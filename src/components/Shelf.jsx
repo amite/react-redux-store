@@ -8,9 +8,9 @@ class Shelf extends Component {
 
     this.state = {
       shelfItems: [
-        'shampoo',
-        'chocolate',
-        'yogurt'
+        { "name": 'shampoo', "price": 23 },
+        { "name": 'chocolate', "price": 15 },
+        { "name": 'yogurt', "price": 10 }
       ]
     }
   }
@@ -21,7 +21,7 @@ class Shelf extends Component {
   
   render() {
     const shelfItems = this.state.shelfItems.map((item, idx) => {
-      return <li key={idx}><button onClick={()=>this.addItemToCart(item)}>[+]</button>{item}</li>
+      return <li key={idx}><button onClick={()=>this.addItemToCart(item)}>[+]</button>{item.name} - ${item.price}</li>
     })
     return(
       <div>

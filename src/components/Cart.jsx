@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as CartActions from '../actions/cart'
 import Shelf from './Shelf'
+import EmptyCart from './EmptyCart'
 
 /*
 This is a container component
@@ -11,15 +12,17 @@ class Cart extends Component {
 
   render() {
     const CartItems = this.props.cart.map(
-      (item, idx) => (<li key={idx}>{item}</li>)
+      (item, idx) =><li key={idx}>{item.name} - ${item.price}</li>
     )
 
+    const isCartEmpty = () => CartItems.length === 0
+    
     return(
       <div className="Cart">
         <Shelf addItem={this.props.action.addToCart} />
         <h2>Cart Items</h2>
         <ol>
-          {CartItems}
+          {isCartEmpty() ? <EmptyCart/> : CartItems}
         </ol>
       </div>
     )
